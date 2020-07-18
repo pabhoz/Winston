@@ -1,6 +1,6 @@
 # Winston
 
-[![Version](https://img.shields.io/badge/version-alpha-red.svg)]() [![Node Version](https://img.shields.io/badge/NodeJS-10+-green.svg)]() [![License](https://img.shields.io/badge/Licence-Apache--2.0-blue.svg)]()
+[![Version](https://img.shields.io/badge/version-0.0.1--beta-red.svg)]() [![Node Version](https://img.shields.io/badge/NodeJS-10+-green.svg)]() [![License](https://img.shields.io/badge/Licence-Apache--2.0-blue.svg)]()
 
 ## About Winston
 
