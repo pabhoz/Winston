@@ -1,8 +1,9 @@
 {
   "name": "@pabhoz/winston",
-  "version": "0.0.2-beta",
+  "version": "0.0.3-beta",
   "description": "Workspaces manager",
   "main": "winston.js",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
