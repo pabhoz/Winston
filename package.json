@@ -1,0 +1,25 @@
+{
+  "name": "winston",
+  "version": "1.0.0",
+  "description": "Workspaces manager",
+  "main": "winston.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pabhoz/Winston.git"
+  },
+  "keywords": [
+    "nodejs",
+    "automation",
+    "tools",
+    "zsh"
+  ],
+  "author": "pabhoz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pabhoz/Winston/issues"
+  },
+  "homepage": "https://github.com/pabhoz/Winston#readme"
+}
