@@ -1,6 +1,6 @@
 {
   "name": "@pabhoz/winston",
-  "version": "0.0.1-beta",
+  "version": "0.0.2-beta",
   "description": "Workspaces manager",
   "main": "winston.js",
   "scripts": {
