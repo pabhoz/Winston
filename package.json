@@ -1,6 +1,6 @@
 {
-  "name": "winston",
-  "version": "0.0.1-beta",
+  "name": "@pabhoz/winston",
+  "version": "0.0.2-beta",
   "description": "Workspaces manager",
   "main": "winston.js",
   "scripts": {
@@ -17,7 +17,7 @@
     "zsh"
   ],
   "author": "pabhoz",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/pabhoz/Winston/issues"
   },
