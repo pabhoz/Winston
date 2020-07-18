@@ -5,6 +5,7 @@ const fs = require("fs"),
 const readline = require('readline');
 
 let config = undefined;
+let projectConfig = undefined;
 
 var __dir__ = path.dirname(fs.realpathSync(__filename));
 
@@ -16,10 +17,11 @@ const action = args[2];
 
 bootstrap();
 
-async function doMagic() {
+async function doMagic(path = undefined) {
+    path = (path) ? path : `${ config.workspacesPath }${ (config.workDirectory) ? `/${config.workDirectory}` : '' }`;
     console.log(`Welcome back`, '\x1b[32m', config.owner, '\x1b[0m');
     console.log(`Wich project do you want to open?`);
-    const folders = await runCommand(`ls -d ${config.workspacesPath}${(config.workDirectory) ? `/${config.workDirectory}` : ''}/*`);
+    const folders = await runCommand(`ls -d ${path}/*`);
     const options = [];
     let prompt = '';
     folders.split('\n').forEach((option, i) => {
@@ -38,8 +40,15 @@ async function doMagic() {
     let selection = await askForInput(`\nSelect a project [1]: `);
     selection = (selection === '') ? 1 : selection;
     selection = options[selection - 1];
-    const code = await askForInput(`Want to open ${selection.name} with code? [y]`);
-    if(code !== 'n'){ await runCommand(`code -g ${selection.path}`)} else { await runCommand(`open ${selection.path}`)}
+
+    const projectConfig = await checkForProjectConfig(selection.path);
+    if (projectConfig) {
+        doMagic(selection.path);
+    } else {
+        const code = await askForInput(`Want to open ${selection.name} with code? [y]`);
+        if(code !== 'n'){ await runCommand(`code -g ${selection.path}`)} else { await runCommand(`open ${selection.path}`)}
+    }
+
 
 }
 
@@ -66,6 +75,23 @@ async function checkForConfig() {
             await createConfig();
         } else {
             config = require('./wconfig.json');
+        }
+    } catch (err) {
+        console.error(err)
+    }
+}
+
+async function checkForProjectConfig(projectPath) {
+    try {
+        if (fs.existsSync(`${projectPath}/wproject.json`)) {
+            return require(`${projectPath}/wproject.json`);
+        } else {
+            const setupAAP = await askForInput('Want to setup this as a project? [y]');
+            if (setupAAP === 'y' || setupAAP === 'Y' || setupAAP === '') {
+                await runCommand(`echo {} >> ${projectPath}/wproject.json`);
+                return require(`${projectPath}/wproject.json`);
+            }
+            return undefined;
         }
     } catch (err) {
         console.error(err)
